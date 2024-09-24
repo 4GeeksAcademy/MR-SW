@@ -1,13 +1,25 @@
-import React from "react";
-import CharacterCard from "./charactercard.jsx";
+import React, { useEffect, useState } from "react";
+
+import Cards from "./cards.jsx";
 
 const Scrollplanet = () => {
+  const [planets, setPlanets] = useState([]);
+
+  useEffect(() => {
+    const storedPlanets = localStorage.getItem("planets");
+    if (storedPlanets) {
+      setPlanets(JSON.parse(storedPlanets));
+    }
+  }, []);
   return (
     <>
       <div className="multiple-cards-container">
-        {Array.from({ length: 10 }).map((_, index) => (
-          <div className="col-4">
-            <CharacterCard key={index} />
+        {planets.map((planet, index) => (
+          <div className="col-3 " key={index}>
+            <Cards
+              title={planet.name}
+              description={`Climate: ${planet.climate}, Population: ${planet.population}, Terrain: ${planet.terrain}`}
+            />
           </div>
         ))}
       </div>

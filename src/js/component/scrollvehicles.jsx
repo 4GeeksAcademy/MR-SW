@@ -1,13 +1,24 @@
-import React from "react";
-import CharacterCard from "./charactercard.jsx";
+import React, { useEffect, useState } from "react";
+import Cards from "./cards.jsx";
 
 const Scrollvehicles = () => {
+  const [vehicles, setVehicles] = useState([]);
+
+  useEffect(() => {
+    const storedVehicles = localStorage.getItem("vehicles");
+    if (storedVehicles) {
+      setVehicles(JSON.parse(storedVehicles));
+    }
+  }, []);
   return (
     <>
       <div className="multiple-cards-container">
-        {Array.from({ length: 10 }).map((_, index) => (
-          <div className="col-4">
-            <CharacterCard key={index} />
+        {vehicles.map((vehicle, index) => (
+          <div className="col-3 " key={index}>
+            <Cards
+              title={vehicle.name}
+              description={`Model: ${vehicle.model}`}
+            />
           </div>
         ))}
       </div>

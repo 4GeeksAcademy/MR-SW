@@ -5,9 +5,11 @@ import "../../styles/home.css";
 import Scrollcharacter from "../component/scrollcharacter.jsx";
 import Scrollplanet from "../component/scrollplanet.jsx";
 import Scrollvehicles from "../component/scrollvehicles.jsx";
+import FavoriteDropdown from "../component/favoritedropdown.jsx";
 
 export const Home = () => (
   <div className="text-center mt-5 gx-5">
+    <FavoriteDropdown />
     <h1 className="title">Characters</h1>
     <Scrollcharacter />
     <h1 className="title">Planets</h1>
