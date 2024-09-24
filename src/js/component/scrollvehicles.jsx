@@ -18,6 +18,8 @@ const Scrollvehicles = () => {
             <Cards
               title={vehicle.name}
               description={`Model: ${vehicle.model}`}
+              type="vehicles"
+              id={vehicle.uid}
             />
           </div>
         ))}

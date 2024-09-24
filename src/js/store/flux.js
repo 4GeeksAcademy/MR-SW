@@ -7,34 +7,75 @@ const getState = ({ getStore, getActions, setStore }) => {
       favorites: [],
     },
     actions: {
-      fetchSWData: () => {
+      fetchSWData: async () => {
         const store = getStore();
 
-        if (store.characters.length === 0) {
-          fetch("https://www.swapi.tech/api/people")
-            .then((response) => response.json())
-            .then((data) => {
-              setStore({ characters: data.results });
+        const storedCharacters = localStorage.getItem("characters");
+        const storedPlanets = localStorage.getItem("planets");
+        const storedVehicles = localStorage.getItem("vehicles");
+
+        if (storedCharacters && storedPlanets && storedVehicles) {
+          setStore({
+            characters: JSON.parse(storedCharacters),
+            planets: JSON.parse(storedPlanets),
+            vehicles: JSON.parse(storedVehicles),
+          });
+        } else {
+          const fetchBasicData = async (url) => {
+            const response = await fetch(url);
+            const data = await response.json();
+            return data.results;
+          };
+
+          const characters = await fetchBasicData(
+            "https://www.swapi.tech/api/people"
+          );
+          const planets = await fetchBasicData(
+            "https://www.swapi.tech/api/planets"
+          );
+          const vehicles = await fetchBasicData(
+            "https://www.swapi.tech/api/vehicles"
+          );
+
+          const fetchDetails = async (url) => {
+            const response = await fetch(url);
+            const data = await response.json();
+            return data.result.properties;
+          };
+
+          const detailedCharacters = await Promise.all(
+            characters.map(async (character) => {
+              const details = await fetchDetails(character.url);
+              return { ...character, ...details };
             })
-            .catch((error) =>
-              console.error("error fetching characters", error)
-            );
-        }
-        if (store.planets.length === 0) {
-          fetch("https://www.swapi.tech/api/planets")
-            .then((response) => response.json())
-            .then((data) => {
-              setStore({ planets: data.results });
+          );
+
+          const detailedPlanets = await Promise.all(
+            planets.map(async (planet) => {
+              const details = await fetchDetails(planet.url);
+              return { ...planet, ...details };
             })
-            .catch((error) => console.error("error fetching planets", error));
-        }
-        if (store.vehicles.length === 0) {
-          fetch("https://www.swapi.tech/api/vehicles")
-            .then((response) => response.json())
-            .then((data) => {
-              setStore({ vehicles: data.results });
+          );
+
+          const detailedVehicles = await Promise.all(
+            vehicles.map(async (vehicle) => {
+              const details = await fetchDetails(vehicle.url);
+              return { ...vehicle, ...details };
             })
-            .catch((error) => console.error("error fetching vehicles", error));
+          );
+
+          localStorage.setItem(
+            "characters",
+            JSON.stringify(detailedCharacters)
+          );
+          localStorage.setItem("planets", JSON.stringify(detailedPlanets));
+          localStorage.setItem("vehicles", JSON.stringify(detailedVehicles));
+
+          setStore({
+            characters: detailedCharacters,
+            planets: detailedPlanets,
+            vehicles: detailedVehicles,
+          });
         }
       },
       toggleFavorite: (itemName) => {

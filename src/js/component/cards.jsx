@@ -3,13 +3,18 @@ import { Context } from "../store/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons/faHeart";
+import { useNavigate } from "react-router-dom";
 
-const Cards = ({ title, description }) => {
-  const { actions } = useContext(Context);
-  const [favorite, setFavorite] = useState(false);
+const Cards = ({ title, description, type, id }) => {
+  const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
+  const checkFavorite = store.favorites.includes(title);
+
+  const handleDetailview = () => {
+    navigate(`/detail/${type}/${id}`);
+  };
 
   const handleFavorites = () => {
-    setFavorite(!favorite);
     actions.toggleFavorite(title);
   };
 
@@ -23,14 +28,11 @@ const Cards = ({ title, description }) => {
       <div className="card-body">
         <h5 className="card-title">{title}</h5>
         <p className="card-text">{description}</p>
-        <a href="#" className="btn btn-primary">
+        <button className="btn btn-primary" onClick={handleDetailview}>
           Go somewhere
-        </a>
-        <button
-          className={`btn ${favorite ? "active" : ""}`}
-          onClick={handleFavorites}
-        >
-          <FontAwesomeIcon icon={favorite ? solidHeart : regularHeart} />
+        </button>
+        <button className="btn" onClick={handleFavorites}>
+          <FontAwesomeIcon icon={checkFavorite ? solidHeart : regularHeart} />
         </button>
       </div>
     </div>

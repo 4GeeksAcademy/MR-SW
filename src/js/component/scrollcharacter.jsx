@@ -18,7 +18,9 @@ const Scrollcharacter = () => {
           <div className="col-3 " key={index}>
             <Cards
               title={character.name}
-              description={`Gender: ${character.gender}`}
+              description={`Gender: ${character.gender}, Hair color: ${character.hair_color}, Eye color: ${character.eye_color}`}
+              type="characters"
+              id={character.uid}
             />
           </div>
         ))}

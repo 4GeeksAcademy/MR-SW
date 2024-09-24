@@ -1,6 +1,9 @@
 /* 
     General Styles
 */
+.body {
+  background-color: #2f2f3a;
+}
 .multiple-cards-container {
   display: flex;
   flex-direction: row;

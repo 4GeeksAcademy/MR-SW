@@ -19,6 +19,8 @@ const Scrollplanet = () => {
             <Cards
               title={planet.name}
               description={`Climate: ${planet.climate}, Population: ${planet.population}, Terrain: ${planet.terrain}`}
+              type="planets"
+              id={planet.uid}
             />
           </div>
         ))}
