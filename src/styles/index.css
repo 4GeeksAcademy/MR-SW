@@ -1,7 +1,7 @@
 /* 
     General Styles
 */
-.body {
+body {
   background-color: #2f2f3a;
 }
 .multiple-cards-container {
@@ -14,10 +14,46 @@
   padding: 10px;
 }
 .card {
-  max-width: 400px;
+  width: 320px;
+  height: 340px;
+  overflow: hidden;
+  background-color: #43434d;
+  color: aliceblue;
 }
-.title {
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+}
+.card-text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.card-title {
+  color: rgb(255, 0, 0);
+}
+.title,
+h1 {
   color: red;
   text-align: left;
   padding-left: 70px;
+}
+.text-div {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.coverimage {
+  object-fit: cover;
+}
+.detail-text {
+  color: aliceblue;
+  font-size: 20px;
+}
+.cardbutton {
+  margin-top: auto;
 }

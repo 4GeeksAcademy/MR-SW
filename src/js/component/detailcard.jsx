@@ -20,69 +20,69 @@ const DetailCard = () => {
     if (type === "characters") {
       return (
         <>
-          <div className="col-md-2">
-            <h3>Birth Year: {item.birth_year}</h3>
+          <div className="col-md-6 detail-text">
+            <p>Birth Year: {item.birth_year}</p>
           </div>
-          <div className="col-md-2">
-            <h3>Gender: {item.gender}</h3>
+          <div className="col-md-6 detail-text">
+            <p>Gender: {item.gender}</p>
           </div>
-          <div className="col-md-2">
-            <h3>Height: {item.height} cm</h3>
+          <div className="col-md-6 detail-text">
+            <p>Height: {item.height} cm</p>
           </div>
-          <div className="col-md-2">
-            <h3>Mass: {item.mass} kg</h3>
+          <div className="col-md-6 detail-text">
+            <p>Mass: {item.mass} kg</p>
           </div>
-          <div className="col-md-2">
-            <h3>Hair Color: {item.hair_color}</h3>
+          <div className="col-md-6 detail-text">
+            <p>Hair Color: {item.hair_color}</p>
           </div>
-          <div className="col-md-2">
-            <h3>Eye Color: {item.eye_color}</h3>
+          <div className="col-md-6 detail-text">
+            <p>Eye Color: {item.eye_color}</p>
           </div>
         </>
       );
     } else if (type === "planets") {
       return (
         <>
-          <div className="col-md-2">
-            <h3>Climate: {item.climate}</h3>
+          <div className="col-md-6 detail-text">
+            <p>Climate: {item.climate}</p>
           </div>
-          <div className="col-md-2">
-            <h3>Population: {item.population}</h3>
+          <div className="col-md-6 detail-text">
+            <p>Population: {item.population}</p>
           </div>
-          <div className="col-md-2">
-            <h3>Terrain: {item.terrain}</h3>
+          <div className="col-md-6 detail-text">
+            <p>Terrain: {item.terrain}</p>
           </div>
-          <div className="col-md-2">
-            <h3>Gravity: {item.gravity}</h3>
+          <div className="col-md-6 detail-text">
+            <p>Gravity: {item.gravity}</p>
           </div>
-          <div className="col-md-2">
-            <h3>Diameter: {item.diameter} km</h3>
+          <div className="col-md-6 detail-text">
+            <p>Diameter: {item.diameter} km</p>
           </div>
-          <div className="col-md-2">
-            <h3>Surface Water: {item.surface_water}%</h3>
+          <div className="col-md-6 detail-text">
+            <p>Surface Water: {item.surface_water}%</p>
           </div>
         </>
       );
     } else if (type === "vehicles") {
       return (
         <>
-          <div className="col-md-2">
-            <h3>Model: {item.model}</h3>
+          <div className="col-md-6 detail-text">
+            <p>Model: {item.model}</p>
           </div>
-          <div className="col-md-2">
-            <h3>Manufacturer: {item.manufacturer}</h3>
+          <div className="col-md-6 detail-text">
+            <p>Manufacturer: {item.manufacturer}</p>
           </div>
-          <div className="col-md-2">
-            <h3>Cost in Credits: {item.cost_in_credits}</h3>
+          <div className="col-md-6 detail-text">
+            <p>Cost in Credits: {item.cost_in_credits}</p>
           </div>
-          <div className="col-md-2">
-            <h3>Crew: {item.crew}</h3>
+          <div className="col-md-6 detail-text">
+            <p>Crew: {item.crew}</p>
           </div>
-          <div className="col-md-2">
-            <h3>Passengers: {item.passengers}</h3>
+          <div className="col-md-6 detail-text">
+            <p>Passengers: {item.passengers}</p>
           </div>
-          <div className="col-md-2">
-            <h3>Vehicle Class: {item.vehicle_class}</h3>
+          <div className="col-md-6 detail-text">
+            <p>Vehicle Class: {item.vehicle_class}</p>
           </div>
         </>
       );
@@ -91,21 +91,25 @@ const DetailCard = () => {
 
   return (
     <>
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
+      <div className="container-fluid p-0">
+        <div className="row d-flex image-half">
+          <div className="col-6 p-0">
             <img
               src="https://dummyimage.com/1200x600/000/fff"
               alt={item.name}
-              className="img-fluid"
+              className="coverimage img-fluid"
             />
           </div>
-        </div>
-        <div className="row mt-4">
-          <div className="col-12">
-            <h3>{item.name}</h3>
+          <div className="col-6 p-0 d-flex flex-column justify-content-start align-items-start">
+            <div className="col-12 text-left p-4">
+              <h1 className="text-center col-6  d-flex flex-row  justify-content-center">
+                {item.name}
+              </h1>
+            </div>
+            <div className="col-12 p-4">
+              <div className="row">{renderDetails()}</div>
+            </div>
           </div>
-          {renderDetails()}
         </div>
       </div>
     </>

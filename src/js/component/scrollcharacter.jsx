@@ -15,7 +15,7 @@ const Scrollcharacter = () => {
     <>
       <div className="multiple-cards-container">
         {characters.map((character, index) => (
-          <div className="col-3 " key={index}>
+          <div className="col " key={index}>
             <Cards
               title={character.name}
               description={`Gender: ${character.gender}, Hair color: ${character.hair_color}, Eye color: ${character.eye_color}`}

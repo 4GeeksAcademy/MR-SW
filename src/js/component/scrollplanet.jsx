@@ -15,7 +15,7 @@ const Scrollplanet = () => {
     <>
       <div className="multiple-cards-container">
         {planets.map((planet, index) => (
-          <div className="col-3 " key={index}>
+          <div className="col " key={index}>
             <Cards
               title={planet.name}
               description={`Climate: ${planet.climate}, Population: ${planet.population}, Terrain: ${planet.terrain}`}

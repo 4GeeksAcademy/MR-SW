@@ -14,7 +14,7 @@ const Scrollvehicles = () => {
     <>
       <div className="multiple-cards-container">
         {vehicles.map((vehicle, index) => (
-          <div className="col-3 " key={index}>
+          <div className="col " key={index}>
             <Cards
               title={vehicle.name}
               description={`Model: ${vehicle.model}`}

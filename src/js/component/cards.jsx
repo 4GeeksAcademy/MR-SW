@@ -28,10 +28,15 @@ const Cards = ({ title, description, type, id }) => {
       <div className="card-body">
         <h5 className="card-title">{title}</h5>
         <p className="card-text">{description}</p>
-        <button className="btn btn-primary" onClick={handleDetailview}>
-          Go somewhere
+      </div>
+      <div className="d-flex justify-content-between p-2">
+        <button
+          className="btn btn-danger cardbutton"
+          onClick={handleDetailview}
+        >
+          View Details
         </button>
-        <button className="btn" onClick={handleFavorites}>
+        <button className="btn btn-danger cardbutton" onClick={handleFavorites}>
           <FontAwesomeIcon icon={checkFavorite ? solidHeart : regularHeart} />
         </button>
       </div>
